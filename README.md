@@ -21,7 +21,7 @@ I'm declaring an arrow function called longestSubsequence that takes one argumen
 
 Next, I'm initializing two variables, maxSub and currentSub. These will hold the values for the longest valid subsequence (grouping of numbers) and the current valid subsequence.
 
-The function will then use a for loop to iterate through nums to check each number in the index against the next number in the index stopping at the second to last index. (JavaScript will allow you to compare nums.length instead of nums.length -1 but it returns NaN which is bad, so it's best practice not to do this.)
+The function will then use a for loop to iterate through nums to check each number in the index against the next number in the index stopping at the second to last index. (JavaScript will allow you to compare nums.length instead of nums.length -1 but it will return undefined which throws an out of bounds error leading to unintended behavior, so it's best practice not to do this.)
 
 Next, I'm using an if statement to determine whether the number at the current index of (nums[i]) minus the next (index[i+1]) is strictly equal to 1. The challenge asks to determine if the difference between consecutive elements is either 1 or -1 so I'm using Math.abs() to find the absolute difference which eliminates the need to check for both 1 and -1 separately. The function then increments currentSub if this is true. If this is false, the function checks to see if the currentSub is greater than the maxSub and updates maxSub with the current high score. It then resets currentSub to 1 to start logging a new sequence.
 
