@@ -31,27 +31,53 @@ When the loop is done and all numbers in nums have been checked, currentSub and 
 
 ```javascript
 const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
+// const nums = [0, 0, 0, 0];
+// const nums = [];
+// const nums = ['apple', 'orange'];
+// const nums = [2.5, 4.3, 5.6, 8.9];
+// const nums = [{},{},2,45,];
+// const nums = [[],[],2,45,];
 
 const longestSubsequence = (nums) => {
-  let maxSub = 0;
-  let currentSub = 1;
-
-  for (let i = 0; i < nums.length - 1; i++) {
-    if (Math.abs(nums[i] - nums[i + 1]) === 1) {
-      currentSub++;
-    } else {
-      if (currentSub > maxSub) {
-        maxSub = currentSub;
-      }
-      currentSub = 1;
+  try {
+    if (nums.length === 0) {
+      throw new Error('The array must not be empty.');
     }
-  }
+    if (nums.some((num) => !Number.isInteger(num))) {
+      throw new Error('The array must not contain decimals.');
+    }
 
-  if (currentSub > maxSub) {
-    maxSub = currentSub;
-  }
+    if (nums.some((num) => typeof num !== 'number')) {
+      throw new Error('The array must contain only integers.');
+    }
 
-  return maxSub;
+    if (nums.every((num) => num === 0)) {
+      throw new Error('The array must contain more than zeros.');
+    }
+
+    let maxSub = 0;
+    let currentSub = 1;
+
+    for (let i = 0; i < nums.length - 1; i++) {
+      if (Math.abs(nums[i] - nums[i + 1]) === 1) {
+        currentSub++;
+      } else {
+        if (currentSub > maxSub) {
+          maxSub = currentSub;
+        }
+        currentSub = 1;
+      }
+    }
+
+    if (currentSub > maxSub) {
+      maxSub = currentSub;
+    }
+
+    return maxSub;
+  } catch (error) {
+    console.error(error.message);
+    return null;
+  }
 };
 
 const result = longestSubsequence(nums);
