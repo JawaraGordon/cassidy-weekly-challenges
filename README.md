@@ -1,9 +1,10 @@
-# Cassidy's Weekly Challenge Questions 
+# Cassidy's Weekly Challenge Questions
+
 ## January 20, 2025:
 
 Given a list of integers, write a function that finds the longest subsequence where the difference between consecutive elements is either 1 or -1. Return the length of this subsequence.
 
-Examples:
+### Examples:
 
 ```javascript
 > longestSubsequence([1,2,3,4,5])
