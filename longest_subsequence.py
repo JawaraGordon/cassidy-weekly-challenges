@@ -7,23 +7,44 @@
 # // > longestSubsequence([10,11,7,8,9,12])
 # // 3
 
-nums = [1,2,3,2,5,6,7,8]
+nums = [1,2,3,2,5,6,7,8,9]
 
+#  brute force solution
+# def longest_subsequence(nums):
+#     max_sub = []  
+#     current_sub = []	
+#     for i in range(len(nums) - 1):  
+#         if abs(nums[i] - nums[i+1]) == 1:  
+#             current_sub.append(nums[i])	 
+#         else:
+#             current_sub.append(nums[i])	
+#             if len(current_sub) > len(max_sub):	
+#                 max_sub = current_sub
+#         current_sub = []
+	        
+#     current_sub.append(nums[-1])		
+#     if len(current_sub) > len(max_sub):
+#            max_sub =  current_sub
+#     return max_sub 
+
+# result = longest_subsequence(nums)
+# print(result)
+
+
+
+# refactored solution
 def longest_subsequence(nums):
-    max_sub = []  
-    current_num = []	
+    max_sub = 0  
+    current_sub = 1	
     for i in range(len(nums) - 1):  
         if abs(nums[i] - nums[i+1]) == 1:  
-            current_num.append(nums[i])	 
-        else:
-            current_num.append(nums[i])	
-            if len(current_num) > len(max_sub):	
-                max_sub = current_num
-        current_num = []
-	        
-    current_num.append(nums[-1])		
-    if len(current_num) > len(max_sub):
-           max_sub =  current_num
+            current_sub+=1	 
+        elif current_sub > max_sub:
+                max_sub	= current_sub
+                current_sub = 1
+	        		
+    if current_sub > max_sub:
+           max_sub =  current_sub
     return max_sub 
 
 result = longest_subsequence(nums)
