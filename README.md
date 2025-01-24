@@ -109,6 +109,15 @@ When the loop is done and all numbers in the list have been checked, current_sub
 ## Python Solution Code:
 
 ```python
+
+nums = [1,2,3,2,5,6,7,8,9]
+# nums = [0, 0, 0, 0]
+# nums = []
+# nums = ['apple', 'orange']
+# nums = [2.5, 4.3, 5.6, 8.9]
+# nums = [{},{},2,45,]
+# nums = [[],[],2,45,]
+
 def validate_nums(nums):
     if not isinstance(nums, list):
              raise ValueError("The input must be a list.")
