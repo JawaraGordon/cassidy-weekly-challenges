@@ -38,7 +38,7 @@
 
 // with error handling for edge cases
 
-const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
+// const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
 // const nums = [0, 0, 0, 0];
 // const nums = [];
 // const nums = ['apple', 'orange'];
@@ -46,22 +46,32 @@ const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
 // const nums = [{},{},2,45,];
 // const nums = [[],[],2,45,];
 
+const validateNums = (nums) => {
+  if (!Array.isArray(nums)) {
+    throw new Error('The input must be an array.');
+  }
+  if (nums.length === 0) {
+    throw new Error('The array must not be empty.');
+  }
+  if (nums.length < 2) {
+    throw new Error('The array must contain more than 1 number.');
+  }
+
+  if (nums.some((num) => typeof num !== 'number')) {
+    throw new Error('The array must contain only integers.');
+  }
+  if (nums.some((num) => !Number.isInteger(num))) {
+    throw new Error('The array must not contain decimals.');
+  }
+
+  if (nums.every((num) => num === 0)) {
+    throw new Error('The array must contain more than zero(s).');
+  }
+};
+
 const longestSubsequence = (nums) => {
   try {
-    if (nums.length === 0) {
-      throw new Error('The array must not be empty.');
-    }
-    if (nums.some((num) => !Number.isInteger(num))) {
-      throw new Error('The array must not contain decimals.');
-    }
-
-    if (nums.some((num) => typeof num !== 'number')) {
-      throw new Error('The array must contain only integers.');
-    }
-
-    if (nums.every((num) => num === 0)) {
-      throw new Error('The array must contain more than zeros.');
-    }
+    validateNums(nums);
 
     let maxSub = 0;
     let currentSub = 1;

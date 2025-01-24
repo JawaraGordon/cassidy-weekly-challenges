@@ -7,7 +7,7 @@
 # // > longestSubsequence([10,11,7,8,9,12])
 # // 3
 
-nums = [1,2,3,2,5,6,7,8,9]
+# nums = [1,2,3,2,5,6,7,8,9]
 # nums = [0, 0, 0, 0]
 # nums = []
 # nums = ['apple', 'orange']
@@ -55,23 +55,30 @@ nums = [1,2,3,2,5,6,7,8,9]
 # print(result)
 
 # refactored solution with error handling
-def longest_subsequence(nums):
-    try:
-        if not isinstance(nums, list):
+
+def validate_nums(nums):
+    if not isinstance(nums, list):
              raise ValueError("The input must be a list.")
         
-        if len(nums) == 0:
-            raise ValueError("The list must not be empty.")
-        
-        if any(not isinstance(num, (int, float)) for num in nums):
-            raise ValueError("The list must contain only numbers.")
-        
-        if any(isinstance(num, float) and not num.is_integer() for num in nums):
-             raise ValueError("The list must not contain decimals.")
+    if len(nums) == 0:
+        raise ValueError("The list must not be empty.")
 
-        if all(num == 0 for num in nums):
-            raise ValueError("The list must not contain only zeros.") 
+    if any(not isinstance(num, (int, float)) for num in nums):
+        raise ValueError("The list must contain only numbers.")
+    
+    if len(nums) < 2:
+        raise ValueError("The list must contain more than one number.")
+    
+    if any(isinstance(num, float) and not num.is_integer() for num in nums):
+            raise ValueError("The list must not contain decimals.")
+
+    if all(num == 0 for num in nums):
+        raise ValueError("The list must not contain only zero(s).") 
+
+def longest_subsequence(nums):
+    try:
         
+        validate_nums(nums)
         max_sub = 0  
         current_sub = 1	
         for i in range(len(nums) - 1):  

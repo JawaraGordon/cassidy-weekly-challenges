@@ -15,11 +15,11 @@ Given a list of integers, write a function that finds the longest subsequence wh
 3
 ```
 
-## Solution Explained:
+## JavaScript Solution Explained:
 
-I'm declaring an arrow function called longestSubsequence that takes one argument called nums (an array if integers).
+First, I'm creating a helper function that handles any errors thrown by incorrect data types or invalid inputs.
 
-Next, I'm initializing two variables, maxSub and currentSub. These will hold the values for the longest valid subsequence (grouping of numbers) and the current valid subsequence.
+Next, I'm declaring an arrow function called longestSubsequence that takes one argument called nums (an array of integers). I'm wrapping the function login inside a try-catch block that will throw an error by passing the function argument through the validateNums helper function. Then I'm initializing two variables, maxSub and currentSub. These will hold the values for the longest valid subsequence (grouping of numbers) and the current valid subsequence.
 
 The function will then use a for loop to iterate through nums to check each number in the index against the next number in the index stopping at the second to last index. (JavaScript will allow you to compare nums.length instead of nums.length -1 but it will return undefined which throws an out of bounds error leading to unintended behavior, so it's best practice not to do this.)
 
@@ -27,7 +27,7 @@ Next, I'm using an if statement to determine whether the number at the current i
 
 When the loop is done and all numbers in nums have been checked, currentSub and maxSub are checked one last time and maxSub is returned. This will show the length of the final sequence which is printed to the console.
 
-## Solution Code:
+## JavaScript Solution Code:
 
 ```javascript
 const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
@@ -38,22 +38,32 @@ const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
 // const nums = [{},{},2,45,];
 // const nums = [[],[],2,45,];
 
+const validateNums = (nums) => {
+  if (!Array.isArray(nums)) {
+    throw new Error('The input must be an array.');
+  }
+  if (nums.length === 0) {
+    throw new Error('The array must not be empty.');
+  }
+  if (nums.length < 2) {
+    throw new Error('The array must contain more than 1 number.');
+  }
+
+  if (nums.some((num) => typeof num !== 'number')) {
+    throw new Error('The array must contain only integers.');
+  }
+  if (nums.some((num) => !Number.isInteger(num))) {
+    throw new Error('The array must not contain decimals.');
+  }
+
+  if (nums.every((num) => num === 0)) {
+    throw new Error('The array must contain more than zero(s).');
+  }
+};
+
 const longestSubsequence = (nums) => {
   try {
-    if (nums.length === 0) {
-      throw new Error('The array must not be empty.');
-    }
-    if (nums.some((num) => !Number.isInteger(num))) {
-      throw new Error('The array must not contain decimals.');
-    }
-
-    if (nums.some((num) => typeof num !== 'number')) {
-      throw new Error('The array must contain only integers.');
-    }
-
-    if (nums.every((num) => num === 0)) {
-      throw new Error('The array must contain more than zeros.');
-    }
+    validateNums(nums);
 
     let maxSub = 0;
     let currentSub = 1;
