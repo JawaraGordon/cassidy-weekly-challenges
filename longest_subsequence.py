@@ -7,14 +7,6 @@
 # // > longestSubsequence([10,11,7,8,9,12])
 # // 3
 
-# nums = [1,2,3,2,5,6,7,8,9]
-# nums = [0, 0, 0, 0]
-# nums = []
-# nums = ['apple', 'orange']
-# nums = [2.5, 4.3, 5.6, 8.9]
-# nums = [{},{},2,45,]
-# nums = [[],[],2,45,]
-
 #  brute force solution
 # def longest_subsequence(nums):
 #     max_sub = []  
@@ -56,6 +48,13 @@
 
 # refactored solution with error handling
 
+nums = [1,2,3,2,5,6,7,8,9]
+# nums = [0, 0, 0, 0]
+# nums = []
+# nums = ['apple', 'orange']
+# nums = [2.5, 4.3, 5.6, 8.9]
+# nums = [{},{},2,45,]
+# nums = [[],[],2,45,]
 def validate_nums(nums):
     if not isinstance(nums, list):
              raise ValueError("The input must be a list.")
