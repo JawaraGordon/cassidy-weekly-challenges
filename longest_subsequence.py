@@ -48,7 +48,8 @@
 
 # refactored solution with error handling
 
-nums = [1,2,3,2,5,6,7,8,9]
+# nums = [1,2,3,2,5,6,7,8,9]
+nums = [4, 4, 4, 4]
 # nums = [0, 0, 0, 0]
 # nums = []
 # nums = ['apple', 'orange']
@@ -69,8 +70,11 @@ def validate_nums(nums):
         raise ValueError("The list must contain more than one number.")
     
     if any(isinstance(num, float) and not num.is_integer() for num in nums):
-            raise ValueError("The list must not contain decimals.")
+        raise ValueError("The list must not contain decimals.")
 
+    if all(num == nums[0] for num in nums):
+        raise ValueError("The list cannot contain the same integer repeated.")
+     
     if all(num == 0 for num in nums):
         raise ValueError("The list must not contain only zero(s).") 
 

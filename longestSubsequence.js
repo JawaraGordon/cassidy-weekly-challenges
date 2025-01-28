@@ -38,7 +38,8 @@
 
 // with error handling for edge cases
 
-// const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
+const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
+// const nums = [4, 4, 4, 4];
 // const nums = [0, 0, 0, 0];
 // const nums = [];
 // const nums = ['apple', 'orange'];
@@ -64,6 +65,9 @@ const validateNums = (nums) => {
     throw new Error('The array must not contain decimals.');
   }
 
+  if (nums.every((num) => num === nums[0])) {
+    throw new Error('The array cannot contain the same integer repeated.');
+  }
   if (nums.every((num) => num === 0)) {
     throw new Error('The array must contain more than zero(s).');
   }
