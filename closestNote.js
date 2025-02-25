@@ -3,8 +3,7 @@
 // > getNoteNames([440, 490, 524, 293.66])
 // > ["This is a A", "This is a B, but it's flat", "This is a C, but it's sharp", "This is a D"]
 
-
-hz = [440, 490, 524, 293.66];
+hz = [440, 490, 524, 293.66, 3951.07];
 
 const getNoteNames = (hz) => {
   const noteNames = [
@@ -28,10 +27,14 @@ const getNoteNames = (hz) => {
     notes[note] = parseFloat(freq.toFixed(2));
   });
 
-  console.log(notes);
+  //   console.log(notes);
 
-
-  
+  return hz.map((frequency) => {
+    const semitones = Math.round(12 * Math.log2(frequency / 440));
+    const diff = ((semitones % 12) + 12) % 12;
+    return noteNames[diff];
+  });
 };
 
-getNoteNames();
+result = getNoteNames(hz);
+console.log(result);
