@@ -38,8 +38,8 @@
 
 // with error handling for edge cases
 
-const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
-// const nums = [4, 4, 4, 4];
+// const nums = [1, 2, 3, 2, 5, 6, 7, 8, 9];
+const nums = [4, 4, 4, 4];
 // const nums = [0, 0, 0, 0];
 // const nums = [];
 // const nums = ['apple', 'orange'];
