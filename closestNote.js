@@ -32,7 +32,7 @@ const getNoteNames = (hz) => {
   return hz.map((frequency) => {
     const semitones = Math.round(12 * Math.log2(frequency / 440));
     const diff = ((semitones % 12) + 12) % 12;
-    return noteNames[diff];
+    return `This note is: ${noteNames[diff]}`;
   });
 };
 
