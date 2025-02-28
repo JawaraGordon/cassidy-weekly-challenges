@@ -44,13 +44,15 @@ const getNoteNames = (hz, key) => {
   };
   const notes = {};
 
+// Maps and trims the correct frequency to each note in the noteNames array
   noteNames.forEach((note, i) => {
     const freq = 440 * Math.pow(2, i / 12);
     notes[note] = parseFloat(freq.toFixed(2));
   });
 
-  console.log('notes', notes);
+//   console.log('notes', notes);
 
+//   Convert each hertz frequency into a semitone index between 0 and 11
   return hz.map((frequency) => {
     const semitones = Math.round(12 * Math.log2(frequency / 440));
     const noteIndex = ((semitones % 12) + 12) % 12;
