@@ -26,7 +26,6 @@ const getNoteNames = (hz) => {
   return hz.map((frequency) => {
     // uses n = 12 * log2(f / 440) to find the distance from A4 (440hz) in semitones
     const semitoneDiff = Math.round(12 * Math.log2(frequency / 440));
-console.log('semitoneDiff', semitoneDiff);
     // handles negative values to keep the index within a 0-11 range
     const noteIndex = ((semitoneDiff % 12) + 12) % 12;
     // saves the correct note from the noteNames array  
