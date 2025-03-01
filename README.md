@@ -1,5 +1,60 @@
 # Cassidy's Weekly Challenge Questions
 
+## February 24, 2025:
+
+Given a list of frequencies (in Hz), write a function to determine the closest musical note for each frequency based on the A440 pitch standard. Extra credit: indicate if the note is flat or sharp!
+
+### Examples:
+
+```javascript
+> getNoteNames([440, 490, 524, 293.66])
+> ["This is a A", "This is a B, but it's flat", "This is a C, but it's sharp", "This is a D"]
+```
+
+## JavaScript Solution Explained:
+
+First, I created a chromatic array of notes: const noteNames = [ 'A', 'A#/Bb', 'B','C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab' ];
+Next, I used an equation that calculates the how many semitones a given frequency is from A 440: n = 12 \* log2(f / 440)
+Then, I used a modulo equation to keep the semitone difference with a positive 0-11 index range: ((n % m) + m) % m;
+Finally, I assigned the noteIndex to a note variable and returned both the initial frequency and note value as a template literal.
+
+## JavaScript Solution Code:
+
+```javascript
+const getNoteNames = (hz) => {
+  // chromatic notes
+  const noteNames = [
+    'A',
+    'A#/Bb',
+    'B',
+    'C',
+    'C#/Db',
+    'D',
+    'D#/Eb',
+    'E',
+    'F',
+    'F#/Gb',
+    'G',
+    'G#/Ab'
+  ];
+  //   converts each hertz frequency into a semitone index between 0 and 11
+  return hz.map((frequency) => {
+    // uses n = 12 * log2(f / 440) to find the distance from A4 (440hz) in semitones
+    const semitoneDiff = Math.round(12 * Math.log2(frequency / 440));
+    console.log('semitoneDiff', semitoneDiff);
+    // handles negative values to keep the index within a 0-11 range
+    const noteIndex = ((semitoneDiff % 12) + 12) % 12;
+    // saves the correct note from the noteNames array
+    let note = noteNames[noteIndex];
+
+    return `This is ${frequency}hz which is the note ${note}`;
+  });
+};
+
+result = getNoteNames(hz);
+console.log(result);
+```
+
 ## January 20, 2025:
 
 Given a list of integers, write a function that finds the longest subsequence where the difference between consecutive elements is either 1 or -1. Return the length of this subsequence.
