@@ -14,8 +14,8 @@ Given a list of frequencies (in Hz), write a function to determine the closest m
 ## JavaScript Solution Explained:
 
 First, I created a chromatic array of notes: const noteNames = [ 'A', 'A#/Bb', 'B','C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab' ];
-Next, I used an equation that calculates the how many semitones a given frequency is from A 440: n = 12 \* log2(f / 440)
-Then, I used a modulo equation to keep the semitone difference with a positive 0-11 index range: ((n % m) + m) % m;
+Next, I used an equation that calculates how many semitones a given frequency is from A 440: n = 12 \* log2(f / 440)
+Then, I used a modulo equation to keep the semitone difference within a positive 0-11 index range: ((n % m) + m) % m;
 Finally, I assigned the noteIndex to a note variable and returned both the initial frequency and note value as a template literal.
 
 ## JavaScript Solution Code:
