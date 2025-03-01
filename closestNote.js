@@ -29,7 +29,7 @@ const getNoteNames = (hz) => {
     // handles negative values to keep the index within a 0-11 range
     const noteIndex = ((semitoneDiff % 12) + 12) % 12;
     // saves the correct note from the noteNames array  
-    let note = noteNames[noteIndex];
+    const note = noteNames[noteIndex];
 
     return `This is ${frequency}hz which is the note ${note}`;
   });
